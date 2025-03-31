@@ -2,10 +2,14 @@
 @import "tailwindcss";
 @import "@spartan-ng/brain/hlm-tailwind-preset.css";
 
-:root {
-  // --font-sans: "Ovo", serif;
-  --font-sans: "Montserrat", sans-serif;
+@theme {
+  --font-ovo: "Ovo", serif;
+  --font-outfit: "Outfit", sans-serif;
 }
+
+// :root {
+//   --font-sans: "Ovo", serif;
+// }
 
 :root {
   --background: 0 0% 100%;
@@ -61,10 +65,20 @@
 }
 
 body {
+  @apply max-w-[1440px] mx-auto font-ovo;
 }
 
-a {
-  font-family: "Ovo", serif;
-  font-weight: 400;
-  font-style: normal;
+button {
+  @apply font-outfit;
+}
+
+.thumbnail {
+  &:hover {
+    img {
+      @apply scale-105 blur-xs;
+    }
+    .icons {
+      @apply flex gap-4;
+    }
+  }
 }

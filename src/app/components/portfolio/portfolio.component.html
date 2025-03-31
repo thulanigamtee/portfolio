@@ -1,0 +1,54 @@
+<section id="portfolio" class="mt-24 px-[5%] lg:px-[10%]">
+  <app-section-info [info]="info" />
+  <div class="mt-10">
+    <ul class="flex flex-col gap-12">
+      @for(project of projects; track $index) {
+      <li
+        class="flex flex-col justify-center gap-10"
+        [ngStyle]="{
+          flexDirection: isDesktopWidth
+            ? $index % 2 === 0
+              ? 'row-reverse'
+              : 'row'
+            : null
+        }"
+      >
+        <div
+          class="md:max-w-[420px] md:h-[210px] overflow-hidden relative thumbnail"
+        >
+          <img
+            [src]="project.image"
+            [alt]="project.name"
+            class="md:max-w-[420px] md:h-[210px] transition duration-200 ease-in-out cursor-pointer thumbnail"
+          />
+          <div
+            class="absolute top-[50%] left-[50%] translate-[-50%] hidden icons"
+          >
+            <a [href]="project.site" target="_blank">
+              <ng-icon hlm size="base" name="lucideExternalLink" />
+            </a>
+            <a [href]="project.repository" target="_blank">
+              <ng-icon hlm size="base" name="lucideGithub" />
+            </a>
+          </div>
+        </div>
+        <div class="grid gap-4 md:max-w-[420px]">
+          <div>
+            <a
+              [href]="project.repository"
+              class="font-bold hover:underline cursor-pointer text-lg"
+              target="_blank"
+              >{{ project.name }}</a
+            >
+          </div>
+          <p>{{ project.description }}</p>
+          <p>
+            <span class="font-bold capitalize">technologies:</span>
+            {{ project.technologies.join(", ") }}
+          </p>
+        </div>
+      </li>
+      }
+    </ul>
+  </div>
+</section>

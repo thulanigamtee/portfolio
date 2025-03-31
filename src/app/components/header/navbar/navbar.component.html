@@ -1,0 +1,16 @@
+<nav
+  [ngClass]="{ hidden: !isActive }"
+  [class.active]="isActive"
+  class="absolute top-0 right-0 z-50 flex flex-row justify-between w-[70vw] max-w-[340px] md:max-w-max h-full px-6 pt-8 bg-white md:bg-transparent mobile-menu md:block md:top-auto md:right-auto md:w-auto md:rounded-full md:relative md:py-2 md:px-6"
+>
+  <ul class="flex flex-col gap-y-6 md:gap-x-6 md:flex-row">
+    @for(link of links; track $index) {
+    <li>
+      <a
+        class="px-4 lg:px-6 py-2 hover:underline cursor-pointer text-lg capitalize"
+        >{{ link.name }}</a
+      >
+    </li>
+    }
+  </ul>
+</nav>

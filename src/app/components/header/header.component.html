@@ -1,0 +1,17 @@
+<header class="flex items-center justify-between mt-6 px-[5%] lg:px-[10%]">
+  <app-logo />
+  <app-navbar [isActive]="isMenuActive" />
+  <button hlmBtn class="cursor-pointer rounded-full hidden md:flex gap-2">
+    connect
+    <ng-icon hlm size="sm" name="lucideArrowUpRight" />
+  </button>
+  <button
+    hlmBtn
+    size="icon"
+    variant="outline"
+    class="cursor-pointer md:hidden z-100"
+    (click)="toggleMenu()"
+  >
+    <ng-icon hlm size="sm" [name]="isMenuActive ? 'lucideX' : 'lucideMenu'" />
+  </button>
+</header>

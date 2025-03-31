@@ -1,0 +1,12 @@
+<button class="flex items-end gap-x-1">
+  <ul class="flex">
+    @for(char of name; track $index) {
+    <li>
+      <span class="text-3xl font-semibold font-outfit text-[#242424]">{{
+        char
+      }}</span>
+    </li>
+    }
+  </ul>
+  <span class="block w-3 h-3 -translate-y-2 bg-blue-600 rounded-full"></span>
+</button>

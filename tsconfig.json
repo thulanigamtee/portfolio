@@ -22,12 +22,12 @@
       "@spartan-ng/ui-icon-helm": [
         "./src/app/shared/ui/ui-icon-helm/src/index.ts"
       ],
-      "@spartan-ng/ui-typography-helm": [
-        "./src/app/shared/ui/ui-typography-helm/src/index.ts"
+      "@spartan-ng/ui-formfield-helm": [
+        "./src/app/shared/ui/ui-formfield-helm/src/index.ts"
       ],
-      "@spartan-ng/ui-sheet-helm": [
-        "./src/app/shared/ui/ui-sheet-helm/src/index.ts"
-      ]
+      "@spartan-ng/ui-input-helm": [
+        "./src/app/shared/ui/ui-input-helm/src/index.ts"
+      ],
     }
   },
   "angularCompilerOptions": {

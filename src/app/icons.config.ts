@@ -8,6 +8,8 @@ import {
   lucideSchool,
   lucideX,
   lucideExternalLink,
+  lucideMail,
+  lucideLinkedin,
 } from '@ng-icons/lucide';
 
 export const icons = {
@@ -19,6 +21,8 @@ export const icons = {
   lucideSchool,
   lucideGithub,
   lucideExternalLink,
+  lucideMail,
+  lucideLinkedin,
 };
 
 export const provideAppIcons = provideIcons(icons);

@@ -1,0 +1,49 @@
+<section id="contact" class="px-[5%] lg:px-[10%] mt-24">
+  <app-section-info [info]="info" />
+  <form
+    [formGroup]="contactForm"
+    class="flex flex-col items-center justify-center mt-10 gap-8"
+  >
+    <div
+      class="flex flex-col items-center gap-8 md:flex-row mx-auto w-[80vw] max-w-[600px]"
+    >
+      <hlm-form-field class="w-[80vw] max-w-[600px]">
+        <input
+          aria-label="Your Name"
+          formControlName="name"
+          class="w-full"
+          hlmInput
+          type="text"
+          placeholder="Your Name"
+        />
+        <!-- <hlm-error>Name is required</hlm-error> -->
+      </hlm-form-field>
+      <hlm-form-field class="w-[80vw] max-w-[600px]">
+        <input
+          aria-label="Your Email"
+          formControlName="email"
+          class="w-full"
+          hlmInput
+          type="text"
+          placeholder="Your Email"
+        />
+        <!-- <hlm-error >Email is required</hlm-error> -->
+      </hlm-form-field>
+    </div>
+    <hlm-form-field>
+      <textarea
+        aria-label="Your Message"
+        formControlName="message"
+        class="h-60 w-[80vw] max-w-[600px]"
+        hlmInput
+        type="text"
+        placeholder="Your Message"
+      ></textarea>
+      <!-- <hlm-error>Message is required</hlm-error> -->
+    </hlm-form-field>
+    <button hlmBtn class="flex gap-2 rounded-full capitalize cursor-pointer">
+      submit form
+      <ng-icon hlm size="sm" name="lucideArrowUpRight" />
+    </button>
+  </form>
+</section>

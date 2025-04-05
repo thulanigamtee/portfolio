@@ -1,6 +1,5 @@
 import { NgClass } from '@angular/common';
-import { Component, Input } from '@angular/core';
-
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 interface Link {
   name: string;
   path: string;
@@ -13,6 +12,17 @@ interface Link {
 })
 export class NavbarComponent {
   @Input() isActive = false;
+  @Output() mobileMenuEvent = new EventEmitter();
+
+  hideMobileMenu() {
+    this.mobileMenuEvent.emit();
+  }
+
+  activeSection = 'home';
+  setActiveSection(section: string) {
+    this.activeSection = section;
+    this.hideMobileMenu();
+  }
 
   links: Link[] = [
     { name: 'home', path: 'home' },

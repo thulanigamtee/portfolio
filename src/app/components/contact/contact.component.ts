@@ -13,6 +13,11 @@ import { HlmErrorDirective } from '../../shared/ui/ui-formfield-helm/src/lib/hlm
 import { HlmIconDirective } from '../../shared/ui/ui-icon-helm/src/lib/hlm-icon.directive';
 import { NgIcon } from '@ng-icons/core';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmSpinnerComponent } from '@spartan-ng/ui-spinner-helm';
+import emailjs from '@emailjs/browser';
+import { HlmToasterComponent } from '@spartan-ng/ui-sonner-helm';
+import { toast } from 'ngx-sonner';
+import { environment } from '../../../environments/environment.development';
 
 @Component({
   selector: 'app-contact',
@@ -24,6 +29,9 @@ import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
     HlmErrorDirective,
     HlmIconDirective,
     NgIcon,
+    HlmButtonDirective,
+    HlmSpinnerComponent,
+    HlmToasterComponent,
     HlmButtonDirective,
   ],
   templateUrl: './contact.component.html',
@@ -44,6 +52,44 @@ export class ContactComponent {
       name: ['', Validators.required],
       email: ['', [Validators.email, Validators.required]],
       message: ['', Validators.required],
+    });
+  }
+
+  isSendingMessage = false;
+  statusMessage = '';
+
+  sendEmail() {
+    if (this.contactForm.invalid) {
+      return;
+    }
+
+    this.isSendingMessage = true;
+    emailjs
+      .send(
+        environment.emailJS.serviceId,
+        environment.emailJS.templateId,
+        this.contactForm.value,
+        environment.emailJS.publicKey
+      )
+      .then(() => {
+        this.contactForm.reset();
+        this.isSendingMessage = false;
+        this.statusMessage = 'Message successfully sent';
+        this.showToast();
+      })
+      .catch(() => {
+        this.isSendingMessage = false;
+        this.statusMessage = 'Error sending message';
+        this.showToast();
+      });
+  }
+
+  showToast() {
+    toast(this.statusMessage, {
+      action: {
+        label: 'dismiss',
+        onClick: () => console.log('Undo'),
+      },
     });
   }
 }

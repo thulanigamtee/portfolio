@@ -64,8 +64,15 @@
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  @apply max-w-[1440px] mx-auto font-ovo;
+  @apply max-w-[1440px] mx-auto font-outfit;
+  &.no-scroll {
+    overflow: hidden;
+  }
 }
 
 button {

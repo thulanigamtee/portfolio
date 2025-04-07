@@ -1,6 +1,5 @@
 import { Component, inject } from '@angular/core';
 import { HeaderComponent } from './components/header/header.component';
-import { OverlayService } from './components/header/overlay.service';
 import { ThemeService } from './services/theme.service';
 import { HomeComponent } from './components/home/home.component';
 import { AboutComponent } from './components/about/about.component';
@@ -29,7 +28,4 @@ import { HlmToasterComponent } from './shared/ui/ui-sonner-helm/src/lib/hlm-toas
 })
 export class AppComponent {
   themeService = inject(ThemeService);
-
-  overlayService = inject(OverlayService);
-  overlay$ = this.overlayService.overlay$;
 }

@@ -38,13 +38,13 @@ export class HeaderComponent {
 
   showMobileMenu() {
     this.isMobileMenuActive = true;
-    this.overlayService.overlayState = true;
+    this.overlayService.setOverlay(true);
     document.body.classList.add('no-scroll');
   }
 
   hideMobileMenu() {
     this.isMobileMenuActive = false;
-    this.overlayService.overlayState = false;
+    this.overlayService.setOverlay(false);
     document.body.classList.remove('no-scroll');
   }
 

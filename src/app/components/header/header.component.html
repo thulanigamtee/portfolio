@@ -1,10 +1,10 @@
 <header
-  class="fixed z-50 top-0 w-full transition-all duration-300 flex items-center justify-between py-3 px-[5%] lg:px-[10%]"
+  class="fixed z-20 top-0 w-full transition-all duration-300 flex items-center justify-between py-3 px-[5%] lg:px-[10%]"
   [ngClass]="{
     'bg-background shadow-md': isScrolled,
     'bg-transparent': !isScrolled,
     '-top-24': isHeaderHidden,
-    'top-0': !isHeaderHidden
+    'top-0': !isHeaderHidden,
   }"
 >
   <app-logo />
@@ -25,7 +25,7 @@
     hlmBtn
     size="icon"
     variant="outline"
-    class="cursor-pointer md:hidden z-100"
+    class="cursor-pointer md:hidden z-30"
     (click)="toggleMobileMenu()"
   >
     <ng-icon

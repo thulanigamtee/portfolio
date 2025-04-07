@@ -1,9 +1,10 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Client, Databases, Storage } from 'appwrite';
 import { environment } from '../../../environments/environment.development';
-import { project } from './project.model';
-import { Observable, from } from 'rxjs';
+import { Project } from './project.model';
+import { BehaviorSubject, Observable, from, of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
+import { ToastService } from '../../services/toast.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +13,11 @@ export class PortfolioService {
   private client: Client;
   private database: Databases;
   private storage: Storage;
+
+  private projects = new BehaviorSubject<Project[]>([]);
+  public projects$ = this.projects.asObservable();
+
+  private toastService = inject(ToastService);
 
   constructor() {
     this.client = new Client()
@@ -22,26 +28,29 @@ export class PortfolioService {
     this.storage = new Storage(this.client);
   }
 
-  getProjects(): Observable<project[]> {
+  getProjects(): Observable<Project[]> {
     return from(
       this.database.listDocuments(
         environment.appwrite.databaseId,
         environment.appwrite.collectionId
       )
     ).pipe(
-      map((response) =>
-        response.documents.map((doc: any) => ({
+      map((response) => {
+        const projects: Project[] = response.documents.map((doc: any) => ({
           image: this.getFilePreview(doc.image),
           name: doc.name,
           description: doc.description,
           technologies: doc.technologies,
           site: doc.site,
           repository: doc.repository,
-        }))
-      ),
-      catchError((error) => {
-        console.error('Error fetching projects:', error);
-        return [];
+        }));
+        this.projects.next(projects);
+        return projects;
+      }),
+      catchError(() => {
+        this.toastService.showToast('Error fetching projects');
+        this.projects.next([]);
+        return of([]);
       })
     );
   }

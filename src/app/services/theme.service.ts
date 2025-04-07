@@ -6,10 +6,8 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class ThemeService {
   private systemMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-  private themeSubject = new BehaviorSubject<'light' | 'dark'>(
-    this.getSystemTheme()
-  );
-  theme$ = this.themeSubject.asObservable();
+  private theme = new BehaviorSubject<'light' | 'dark'>(this.getSystemTheme());
+  theme$ = this.theme.asObservable();
 
   constructor() {
     this.applyTheme(this.getSystemTheme());
@@ -29,7 +27,7 @@ export class ThemeService {
   private listenToSystemChanges() {
     this.systemMediaQuery.addEventListener('change', (event) => {
       const newTheme = event.matches ? 'dark' : 'light';
-      this.themeSubject.next(newTheme);
+      this.theme.next(newTheme);
       this.applyTheme(newTheme);
     });
   }

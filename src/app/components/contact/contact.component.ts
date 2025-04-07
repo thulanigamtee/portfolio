@@ -9,15 +9,13 @@ import { Info } from '../../shared/models/info.interface';
 import { SectionInfoComponent } from '../../shared/section-info/section-info.component';
 import { HlmFormFieldComponent } from '@spartan-ng/ui-formfield-helm';
 import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
-import { HlmErrorDirective } from '../../shared/ui/ui-formfield-helm/src/lib/hlm-error.directive';
 import { HlmIconDirective } from '../../shared/ui/ui-icon-helm/src/lib/hlm-icon.directive';
 import { NgIcon } from '@ng-icons/core';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { HlmSpinnerComponent } from '@spartan-ng/ui-spinner-helm';
 import emailjs from '@emailjs/browser';
-import { HlmToasterComponent } from '@spartan-ng/ui-sonner-helm';
-import { toast } from 'ngx-sonner';
 import { environment } from '../../../environments/environment.development';
+import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'app-contact',
@@ -26,18 +24,18 @@ import { environment } from '../../../environments/environment.development';
     SectionInfoComponent,
     HlmFormFieldComponent,
     HlmInputDirective,
-    HlmErrorDirective,
     HlmIconDirective,
     NgIcon,
     HlmButtonDirective,
     HlmSpinnerComponent,
-    HlmToasterComponent,
     HlmButtonDirective,
   ],
   templateUrl: './contact.component.html',
 })
 export class ContactComponent {
   formBuilder = inject(FormBuilder);
+  toastService = inject(ToastService);
+
   contactForm!: FormGroup;
 
   info: Info = {
@@ -56,7 +54,6 @@ export class ContactComponent {
   }
 
   isSendingMessage = false;
-  statusMessage = '';
 
   sendEmail() {
     if (this.contactForm.invalid) {
@@ -74,22 +71,11 @@ export class ContactComponent {
       .then(() => {
         this.contactForm.reset();
         this.isSendingMessage = false;
-        this.statusMessage = 'Message successfully sent';
-        this.showToast();
+        this.toastService.showToast('Message successfully sent');
       })
       .catch(() => {
         this.isSendingMessage = false;
-        this.statusMessage = 'Error sending message';
-        this.showToast();
+        this.toastService.showToast('Error sending message');
       });
-  }
-
-  showToast() {
-    toast(this.statusMessage, {
-      action: {
-        label: 'dismiss',
-        onClick: () => console.log('Undo'),
-      },
-    });
   }
 }

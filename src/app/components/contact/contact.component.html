@@ -17,7 +17,6 @@
           type="text"
           placeholder="Your Name"
         />
-        <!-- <hlm-error>Name is required</hlm-error> -->
       </hlm-form-field>
       <hlm-form-field class="w-[80vw] max-w-[600px]">
         <input
@@ -28,7 +27,6 @@
           type="text"
           placeholder="Your Email"
         />
-        <!-- <hlm-error>Email is required</hlm-error> -->
       </hlm-form-field>
     </div>
     <hlm-form-field>
@@ -40,7 +38,6 @@
         type="text"
         placeholder="Your Message"
       ></textarea>
-      <!-- <hlm-error>Message is required</hlm-error> -->
     </hlm-form-field>
     <button
       [disabled]="contactForm.invalid"
@@ -50,9 +47,8 @@
       @if(isSendingMessage) {
       <hlm-spinner size="xs" />
       } @else { submit form
-      <ng-icon hlm size="sm" name="lucideArrowUpRight" />
+      <ng-icon hlm size="sm" name="lucideSend" />
       }
     </button>
   </form>
-  <hlm-toaster />
 </section>

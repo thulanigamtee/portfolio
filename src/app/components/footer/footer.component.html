@@ -2,15 +2,21 @@
   class="flex items-center justify-between py-4 border-t px-[5%] lg:px-[10%] mt-10"
 >
   <p class="text-sm">© 2025 Thulani Gamteni. All rights reserved.</p>
-  <div class="flex gap-6">
-    <a
-      href="https://za.linkedin.com/in/thulani-gamteni-8845ab207"
-      target="_blank"
-    >
-      <ng-icon hlm size="sm" name="lucideLinkedin" />
-    </a>
-    <a href="https://github.com/thulanigamtee" target="_blank">
-      <ng-icon hlm size="sm" name="lucideGithub" />
-    </a>
-  </div>
+  <ul class="flex gap-6">
+    @for(social of socials; track $index) {
+    <li>
+      <a
+        hlmBtn
+        [hlmTooltipTrigger]="social.name"
+        [aria-describedby]="social.name"
+        [href]="social.link"
+        size="icon"
+        variant="outline"
+        target="_blank"
+      >
+        <ng-icon hlm size="sm" [name]="social.icon" />
+      </a>
+    </li>
+    }
+  </ul>
 </footer>

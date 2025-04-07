@@ -1,22 +1,21 @@
 import { Component, inject } from '@angular/core';
 import { PortfolioService } from './portfolio.service';
 import { Info } from '../../shared/models/info.interface';
-import { project } from './project.model';
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { SectionInfoComponent } from '../../shared/section-info/section-info.component';
-import { NgStyle } from '@angular/common';
+import { AsyncPipe, NgClass } from '@angular/common';
 import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 import { NgIcon } from '@ng-icons/core';
 
 @Component({
   selector: 'app-portfolio',
-  imports: [SectionInfoComponent, NgStyle, HlmIconDirective, NgIcon],
+  imports: [SectionInfoComponent, AsyncPipe, NgClass, HlmIconDirective, NgIcon],
   templateUrl: './portfolio.component.html',
 })
 export class PortfolioComponent {
   breakpointObserver = inject(BreakpointObserver);
   portfolioService = inject(PortfolioService);
-  projects: project[] = [];
+  projects$ = this.portfolioService.projects$;
 
   info: Info = {
     subtitle: 'My portfolio',
@@ -33,8 +32,6 @@ export class PortfolioComponent {
       .subscribe((state: BreakpointState) => {
         this.isDesktopWidth = state.matches;
       });
-    this.portfolioService
-      .getProjects()
-      .subscribe((data) => (this.projects = data));
+    this.portfolioService.getProjects().subscribe();
   }
 }

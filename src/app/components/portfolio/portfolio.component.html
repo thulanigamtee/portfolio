@@ -2,15 +2,12 @@
   <app-section-info [info]="info" />
   <div class="mt-10">
     <ul class="flex flex-col gap-12">
-      @for(project of projects; track $index) {
+      @for(project of (projects$ | async) ; track $index) {
       <li
         class="flex flex-col justify-center gap-10"
-        [ngStyle]="{
-          flexDirection: isDesktopWidth
-            ? $index % 2 === 0
-              ? 'row-reverse'
-              : 'row'
-            : null
+        [ngClass]="{
+          'flex-row-reverse': isDesktopWidth && $index / 2 === 0,
+          'flex-row': isDesktopWidth && $index / 2 !== 0
         }"
       >
         <div

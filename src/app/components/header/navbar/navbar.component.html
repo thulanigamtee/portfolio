@@ -1,15 +1,15 @@
 <nav
   [ngClass]="{ hidden: !isActive }"
   [class.active]="isActive"
-  class="fixed top-0 right-0 z-100 flex flex-row bg-card justify-between w-[70vw] max-w-[340px] md:max-w-max h-full px-6 pt-8 md:bg-transparent mobile-menu md:block md:top-auto md:right-auto md:w-auto md:rounded-full md:relative md:py-2 md:px-6"
+  class="fixed top-16 right-0 left-0 z-40 flex flex-row bg-card justify-between w-full md:max-w-max h-full px-6 pt-8 md:bg-transparent mobile-menu md:block md:top-auto md:right-auto md:w-auto md:rounded-full md:relative md:py-2 md:px-6"
 >
-  <ul class="flex flex-col gap-y-6 md:gap-x-6 md:flex-row">
+  <ul class="flex flex-col items-center w-full gap-y-6 md:gap-x-6 md:flex-row">
     @for(link of links; track $index) {
     <li>
       <a
-        class="px-4 lg:px-6 py-2 hover:underline cursor-pointer text-lg capitalize"
+        class="px-4 lg:px-6 py-2 hover:underline cursor-pointer text-lg capitalize font-ovo"
         [href]="'#' + link.path"
-        [ngClass]="{ underline: activeSection === link.path }"
+        [ngClass]="{ 'font-bold': activeSection === link.path }"
         (click)="setActiveSection(link.path)"
       >
         {{ link.name }}

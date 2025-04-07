@@ -1,7 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { HeaderComponent } from './components/header/header.component';
 import { OverlayService } from './components/header/overlay.service';
-import { AsyncPipe, NgClass } from '@angular/common';
 import { ThemeService } from './services/theme.service';
 import { HomeComponent } from './components/home/home.component';
 import { AboutComponent } from './components/about/about.component';
@@ -11,12 +10,11 @@ import { LogoComponent } from './shared/logo/logo.component';
 import { HlmIconDirective } from './shared/ui/ui-icon-helm/src/lib/hlm-icon.directive';
 import { NgIcon } from '@ng-icons/core';
 import { FooterComponent } from './components/footer/footer.component';
+import { HlmToasterComponent } from './shared/ui/ui-sonner-helm/src/lib/hlm-toaster.component';
 @Component({
   selector: 'app-root',
   imports: [
     HeaderComponent,
-    NgClass,
-    AsyncPipe,
     HomeComponent,
     AboutComponent,
     PortfolioComponent,
@@ -25,6 +23,7 @@ import { FooterComponent } from './components/footer/footer.component';
     HlmIconDirective,
     NgIcon,
     FooterComponent,
+    HlmToasterComponent,
   ],
   templateUrl: './app.component.html',
 })

@@ -1,10 +1,9 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { NgIcon } from '@ng-icons/core';
 import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 import { LogoComponent } from '../../shared/logo/logo.component';
-import { OverlayService } from './overlay.service';
 import { NgClass } from '@angular/common';
 
 @Component({
@@ -21,8 +20,6 @@ import { NgClass } from '@angular/common';
   templateUrl: './header.component.html',
 })
 export class HeaderComponent {
-  private overlayService = inject(OverlayService);
-
   isHeaderHidden = false;
   isScrolled = false;
   isMobileMenuActive = false;
@@ -38,13 +35,11 @@ export class HeaderComponent {
 
   showMobileMenu() {
     this.isMobileMenuActive = true;
-    this.overlayService.setOverlay(true);
     document.body.classList.add('no-scroll');
   }
 
   hideMobileMenu() {
     this.isMobileMenuActive = false;
-    this.overlayService.setOverlay(false);
     document.body.classList.remove('no-scroll');
   }
 
